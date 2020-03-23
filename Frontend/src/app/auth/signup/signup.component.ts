@@ -13,6 +13,7 @@ export class SignupComponent implements OnInit {
   signupForm: FormGroup
   inProcess;
   error;
+  errorMsg;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -51,7 +52,9 @@ export class SignupComponent implements OnInit {
         }
       }, err => {
         console.log(err);
+        this.inProcess = false;
         this.error = true;
+        this.errorMsg = err.error.message
       })
     }
   }

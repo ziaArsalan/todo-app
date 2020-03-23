@@ -42,7 +42,7 @@ module.exports = async function(req, res){
                         lastName: user.data.lastName,
                         email: user.data.email,
                         phone: user.data.phone,
-                        createdAt: user.data.createdAt.seconds,
+                        createdAt: user.data.createdAt,
                         token
                     }
                 })

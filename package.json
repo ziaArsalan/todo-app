@@ -1,0 +1,20 @@
+{
+  "name": "todo-app",
+  "version": "1.0.0",
+  "description": "This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 7.3.9.",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon Backend/"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ziaArsalan/todo-app.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ziaArsalan/todo-app/issues"
+  },
+  "homepage": "https://github.com/ziaArsalan/todo-app#readme"
+}

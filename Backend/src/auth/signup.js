@@ -24,24 +24,13 @@ module.exports = async function(req, res){
 
         // Old user
         if(!user.success){
-            const token = genereateToken(user.data.email, user.data.id)
             res.status(400).send({
                 success: user.success,
-                message: user.message,
-                user: {
-                    firstName: user.data.firstName,
-                    lastName: user.data.lastName,
-                    email: user.data.email,
-                    phone: user.data.phone,
-                    createAt: user.data.createAt.seconds,
-                    token
-                }
+                message: 'user with this email already exist.',
             })
         } else {
             // User registered successfully then generate token
             const token = genereateToken(user.data.email, user.data.id)
-            console.log(user.data);
-            
             res.status(200).send({
                 success: true,
                 message: 'User successfully registered.',
@@ -50,7 +39,7 @@ module.exports = async function(req, res){
                     lastName: user.data.lastName,
                     email: user.data.email,
                     phone: user.data.phone,
-                    createAt: user.data.createAt.seconds,
+                    createAt: user.data.createAt,
                     token
                 }
             })
