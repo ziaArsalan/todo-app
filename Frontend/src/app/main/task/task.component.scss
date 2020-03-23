@@ -7,8 +7,20 @@ table {
   width: 100%;
 }
 
-td, th {
-  width: 25%;
+.mat-column-date {
+  width: 15%;
+}
+
+.mat-column-item {
+  width: 60%;
+}
+
+.mat-column-isComplete {
+  width: 10%;
+}
+
+.mat-column-action {
+  width: 15%;
 }
 
 .search-icon {
@@ -16,4 +28,10 @@ td, th {
   font-size: 100%;
   margin-right: 10px;
   vertical-align: sub;
+}
+
+.mat-color {
+  color: #673ab7;
+  border: 2px solid;
+  border-radius: 50px;
 }

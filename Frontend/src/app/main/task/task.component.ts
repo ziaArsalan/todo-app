@@ -5,8 +5,10 @@ import { MatTableDataSource } from '@angular/material/table';
 import { TaskService } from '../../../services/task.service';
 
 export interface TaskData {
+  id: string;
   date: string;
   item: string;
+  isComplete: boolean;
 }
 
 @Component({
@@ -15,19 +17,21 @@ export interface TaskData {
   styleUrls: ['./task.component.scss']
 })
 export class TaskComponent implements OnInit {
-  displayedColumns: string[] = ['check', 'date', 'item', 'action'];
+  displayedColumns: string[] = ['date', 'item', 'done', 'action'];
   dataSource: MatTableDataSource<TaskData>;
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
 
   taskData = [];
+  showLoader;
 
   constructor(
     private taskService: TaskService
   ) { }
 
   ngOnInit() {
+    this.showLoader = true;
     this.getTask()
   }
 
@@ -36,8 +40,10 @@ export class TaskComponent implements OnInit {
       console.log(res);
       res['data'].forEach(task => {
         this.taskData.push({
+          id:   task.id,
           date: new Date(task.createdAt._seconds * 1000).toLocaleDateString(),
           item: task.taskTodo,
+          isComplete: task.isComplete
         })
       });
 
@@ -45,9 +51,10 @@ export class TaskComponent implements OnInit {
       this.dataSource = new MatTableDataSource(this.taskData);
       this.dataSource.paginator = this.paginator;
       this.dataSource.sort = this.sort;
-
+      this.showLoader = false;
     }, err => {
       console.log(err);
+      this.showLoader = false;
     })
   }
 
@@ -58,5 +65,25 @@ export class TaskComponent implements OnInit {
     if (this.dataSource.paginator) {
       this.dataSource.paginator.firstPage();
     }
+  }
+
+  taskDone(row){
+    this.taskData = this.taskData.filter(task => {
+      if(row.id == task.id){
+        task.isComplete = true
+      }
+      return true
+    })
+    this.dataSource = new MatTableDataSource(this.taskData);
+  }
+
+  taskDelete(row){
+    this.taskData = this.taskData.filter(task => {
+      if(row.id == task.id){
+        return false
+      }
+      return true
+    })
+    this.dataSource = new MatTableDataSource(this.taskData);
   }
 }
