@@ -1,0 +1,56 @@
+<div class="main-container" [class.is-mobile]="mobileQuery.matches">
+  <mat-sidenav-container class="sidenav-container">
+    <mat-sidenav #snav [opened]="mobileQuery.matches ? open : 'true'" [mode]="mobileQuery.matches ? 'over' : 'side'"
+                 [fixedInViewport]="mobileQuery.matches" fixedTopGap="56">
+      <mat-nav-list style="height: 56px; border-bottom: 1px solid;">
+        <h1 class="app-name">Todo App</h1>
+      </mat-nav-list>
+      <mat-nav-list>
+        <a mat-list-item routerLink="/main/task">
+          <mat-icon>card_travel</mat-icon>
+          <span class="m-l-10 m-t-3">Task</span>
+        </a>
+      </mat-nav-list>
+    </mat-sidenav>
+
+    <mat-sidenav-content>
+      <mat-toolbar color="primary" class="main-toolbar">
+        <div class="width-80">
+          <button [style.display]="mobileQuery.matches ? 'inline' : 'none'" mat-icon-button (click)="snav.toggle()">
+            <mat-icon class="m-b-7">menu</mat-icon>
+          </button>
+          {{ user.firstName }} {{ user.lastName }}
+        </div>
+        <div (click)="profile = !profile" class="width-20 profile">
+          <mat-icon>person</mat-icon>
+        </div>
+      </mat-toolbar>
+      <div *ngIf="profile" class="profile-box">
+        <mat-form-field class="width-100">
+          <mat-label>Full Name</mat-label>
+          <input matInput [value]="user.firstName + ' ' + user.lastName" readonly>
+        </mat-form-field>
+
+        <mat-form-field class="width-100">
+          <mat-label>Email</mat-label>
+          <input matInput [value]="user.email" readonly>
+        </mat-form-field>
+
+        <mat-form-field class="width-100">
+          <mat-label>Phone</mat-label>
+          <input matInput [value]="user.phone" readonly>
+        </mat-form-field>
+        <div>
+          <div>Logout</div>
+          <div (click)="logout()">
+            <mat-icon class="logout">system_update_alt</mat-icon>
+          </div>
+        </div>
+      </div>
+      <div class="p-l-20 p-r-20" [style.marginTop.px]="mobileQuery.matches ? '56' : '0'">
+        <router-outlet></router-outlet>
+      </div>
+    </mat-sidenav-content>
+
+  </mat-sidenav-container>
+</div>

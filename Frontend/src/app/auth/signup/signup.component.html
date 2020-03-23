@@ -1,0 +1,74 @@
+<div>
+  <h3 class="tc fs-24 fw-500">TODO APP</h3>
+  <mat-card class="p-t-30 p-b-30 p-l-60 p-r-60">
+
+    <!-- SignUp Form -->
+    <form [formGroup]="signupForm" (submit)="signup()" class="m-b-20">
+
+      <mat-form-field class="width-100">
+        <mat-label>First Name</mat-label>
+        <input type="text" formControlName="firstName" matInput>
+
+        <mat-error *ngIf="!signupForm.get('firstName').value">
+          First name is <strong>required</strong>
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field class="width-100">
+        <mat-label>Last Name</mat-label>
+        <input type="text" formControlName="lastName" matInput>
+
+        <mat-error *ngIf="!signupForm.get('lastName').value">
+          Last name is <strong>required</strong>
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field class="width-100">
+        <mat-label>Email</mat-label>
+        <input type="email" formControlName="email" matInput>
+        <mat-error *ngIf="!signupForm.get('email').valid">
+          Please enter a valid email address
+        </mat-error>
+        <mat-error *ngIf="!signupForm.get('email').value">
+          Email is <strong>required</strong>
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field class="width-100">
+        <mat-label>Password</mat-label>
+        <input type="password" formControlName="password"  matInput>
+        <mat-error *ngIf="!signupForm.get('password').valid">
+          Minimum length of 6 character
+        </mat-error>
+        <mat-error *ngIf="!signupForm.get('password').value">
+          Password is <strong>required</strong>
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field class="width-100">
+        <mat-label>Phone</mat-label>
+        <input type="tel" formControlName="phone"  matInput>
+        <mat-error *ngIf="!signupForm.get('phone').valid">
+          Please enter a valid phone number
+        </mat-error>
+        <mat-error *ngIf="!signupForm.get('phone').value">
+          Phone is <strong>required</strong>
+        </mat-error>
+      </mat-form-field>
+
+      <button type="submit" [disabled]=inProcess class="m-t-20 width-40" mat-stroked-button color="primary">
+        <img src="../../../assets/img/loader.gif" *ngIf="inProcess" alt="" width="8%" class="p-b-2 m-r-5" srcset="">
+        <span>Singup</span>
+      </button>
+
+      <!-- Error -->
+      <div *ngIf="error">
+        Unable to register user.
+      </div>
+    </form>
+
+    <div class="float-right">
+      Already have an account <a [routerLink]="['/']">Login</a>
+    </div>
+  </mat-card>
+</div>

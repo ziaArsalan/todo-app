@@ -1,0 +1,46 @@
+<div>
+  <h3 class="tc fs-24 fw-500">TODO APP</h3>
+  <mat-card class="p-t-30 p-b-30 p-l-60 p-r-60">
+    <!-- Login Form -->
+    <form [formGroup]="loginForm" class="m-b-20" (submit)="login()">
+
+      <!-- Username -->
+      <mat-form-field class="width-100">
+        <mat-label>Username</mat-label>
+        <input type="email" formControlName="username" matInput>
+
+        <!-- Error -->
+        <mat-error *ngIf="!loginForm.get('username').valid">
+          Please enter a valid email address
+        </mat-error>
+        <mat-error *ngIf="!loginForm.get('username').value">
+          Email is <strong>required</strong>
+        </mat-error>
+      </mat-form-field>
+
+      <!-- Password -->
+      <mat-form-field class="width-100">
+        <mat-label>Password</mat-label>
+        <input type="password" formControlName="password" matInput>
+
+        <!-- Error -->
+        <mat-error *ngIf="!loginForm.get('password').value">
+          Password is <strong>required</strong>
+        </mat-error>
+      </mat-form-field>
+
+      <button type="submit" [disabled]=inProcess class="m-t-20 m-b-5 width-40" mat-stroked-button color="primary">
+        <img src="../../../assets/img/loader.gif" *ngIf="inProcess" alt="" width="8%" class="p-b-2 m-r-5" srcset="">
+        <span>Login</span>
+      </button>
+
+      <!-- Error -->
+      <div *ngIf="error">
+        Invalid username or password.
+      </div>
+    </form>
+    <div class="float-right">
+      Register your account <a [routerLink]="['/signup']">Signup</a>
+    </div>
+  </mat-card>
+</div>
