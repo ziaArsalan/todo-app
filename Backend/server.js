@@ -30,12 +30,19 @@ app.use(logger(config.log))
 
 const server = http.createServer(app)
 
-server.listen(config.port, () => {
-    console.log('server listening at', config.port, 'at environment', process.env.NODE_ENV);
+// For heroku deployment
+const port = process.env.PORT || config.port
+
+server.listen(port, () => {
+    console.log('server listening at', port, 'at environment', process.env.NODE_ENV);
 })
 
 const endpoints = require('./src/index')
 endpoints(app)
+
+app.get('/*', function (req, res) {
+    res.sendFile(path.join(__dirname, 'public/', 'index.html'));
+})
 
 
 // Unhandeled Errors
