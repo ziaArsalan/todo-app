@@ -5,6 +5,7 @@ const reqType = require('../enum').requestType
 const isAuthenticated = require('../util/isAuthenticated')
 const createTask = require('./createTask')
 const getUserTask = require('./getUserTask')
+const updateTask = require('./updateTask')
 
 const Route = () => {
     const routes = [
@@ -19,6 +20,12 @@ const Route = () => {
             url:    '/',
             auth:   isAuthenticated,
             fn:     getUserTask
+        },
+        {
+            method: reqType.POST,
+            url:    '/:taskID',
+            auth:   isAuthenticated,
+            fn:     updateTask
         }
     ]
 

@@ -39,12 +39,14 @@ export class TaskComponent implements OnInit {
     this.taskService.getTasks().subscribe(res => {
       console.log(res);
       res['data'].forEach(task => {
-        this.taskData.push({
-          id:   task.id,
-          date: new Date(task.createdAt._seconds * 1000).toLocaleDateString(),
-          item: task.taskTodo,
-          isComplete: task.isComplete
-        })
+        if(!task.isDelete){
+          this.taskData.push({
+            id:   task.id,
+            date: new Date(task.createdAt._seconds * 1000).toLocaleDateString(),
+            item: task.taskTodo,
+            isComplete: task.isComplete
+          })
+        }
       });
 
       // Assign the data to the data source for the table to render
@@ -68,22 +70,29 @@ export class TaskComponent implements OnInit {
   }
 
   taskDone(row){
-    this.taskData = this.taskData.filter(task => {
-      if(row.id == task.id){
-        task.isComplete = true
-      }
-      return true
+    this.taskService.updateTask(row.id, {isComplete: true}).subscribe(res => {
+      console.log(res);
+      this.taskData = this.taskData.filter(task => {
+        if(row.id == task.id){
+          task.isComplete = true
+        }
+        return true
+      })
+      this.dataSource = new MatTableDataSource(this.taskData);
     })
-    this.dataSource = new MatTableDataSource(this.taskData);
+
   }
 
   taskDelete(row){
-    this.taskData = this.taskData.filter(task => {
-      if(row.id == task.id){
-        return false
-      }
-      return true
+    this.taskService.updateTask(row.id, {isDelete: true}).subscribe(res => {
+      console.log(res);
+      this.taskData = this.taskData.filter(task => {
+        if(row.id == task.id){
+          return false
+        }
+        return true
+      })
+      this.dataSource = new MatTableDataSource(this.taskData);
     })
-    this.dataSource = new MatTableDataSource(this.taskData);
   }
 }
