@@ -25,6 +25,8 @@ export class TaskComponent implements OnInit {
 
   taskData = [];
   showLoader;
+  createTaskError;
+  task;
 
   constructor(
     private taskService: TaskService
@@ -36,6 +38,7 @@ export class TaskComponent implements OnInit {
   }
 
   getTask(){
+    this.taskData = [];
     this.taskService.getTasks().subscribe(res => {
       console.log(res);
       res['data'].forEach(task => {
@@ -57,6 +60,16 @@ export class TaskComponent implements OnInit {
     }, err => {
       console.log(err);
       this.showLoader = false;
+    })
+  }
+
+  createTask(){
+    this.taskService.createTask({task: this.task}).subscribe(res => {
+      console.log(res);
+      this.getTask()
+    }, err => {
+      console.log(err);
+      this.createTaskError = true;
     })
   }
 

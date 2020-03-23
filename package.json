@@ -4,7 +4,7 @@
   "description": "This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 7.3.9.",
   "main": "index.js",
   "scripts": {
-    "start": "nodemon Backend/"
+    "start": "node Backend/"
   },
   "repository": {
     "type": "git",

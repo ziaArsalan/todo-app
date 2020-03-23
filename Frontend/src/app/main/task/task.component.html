@@ -1,15 +1,18 @@
 <div class="p-t-30 p-r-30 p-b-30 p-l-30">
-  <form *ngIf="!showLoader">
-    <mat-form-field class="width-90">
-      <mat-label>New Task</mat-label>
-      <input matInput #message maxlength="256">
-      <mat-hint align="end">{{message.value.length}} / 256</mat-hint>
-    </mat-form-field>
-    <button mat-icon-button class="m-l-20" color="primary">
-      <mat-icon class="m-r-8">add_circle</mat-icon>
-      <span>Add</span>
-    </button>
-  </form>
+  <!-- <form *ngIf="!showLoader"> -->
+    <div *ngIf="!showLoader">
+      <mat-form-field class="width-90">
+        <mat-label>New Task</mat-label>
+        <input matInput #message [(ngModel)]="task" maxlength="256">
+        <mat-hint *ngIf="createTaskError" style="color: red;" align="start">Unable to create task</mat-hint>
+        <mat-hint align="end">{{message.value.length}} / 256</mat-hint>
+      </mat-form-field>
+      <button (click)="createTask()" mat-icon-button class="m-l-20" color="primary">
+        <mat-icon class="m-r-8">add_circle</mat-icon>
+        <span>Add</span>
+      </button>
+    </div>
+  <!-- </form> -->
 
   <mat-form-field *ngIf="!showLoader" class="width-20">
     <mat-label>Search</mat-label>
