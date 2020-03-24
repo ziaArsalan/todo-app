@@ -66,6 +66,7 @@ export class TaskComponent implements OnInit {
   createTask(){
     this.taskService.createTask({task: this.task}).subscribe(res => {
       console.log(res);
+      this.task = '';
       this.getTask()
     }, err => {
       console.log(err);

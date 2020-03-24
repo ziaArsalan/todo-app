@@ -1,27 +1,24 @@
 # TodoApp
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 7.3.9.
+and [Node JS](https://nodejs.org) version 10.16.0
 
-## Development server
+## Run Code
+Install node_modules in both Frontend and Backend directories then run `npm start` in root directory. Now navigate to `http://localhost:3000`
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+## Development Frontend server
 
-## Code scaffolding
+Go to Frontend directoryt with `cd Frontend` and run `npm install` to install node_modules and then run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+## Development Backend server
 
-## Build
+Go to Backend directoryt with `cd Backend` and run `npm install` to install node_modules and then run `nodemon` or `npm run start` to start backend server. Navigate to `http://localhost:3000/`. For apis the base url is `http://localhost:3000/api`.
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
+## Build for production
 
-## Running unit tests
+Run `npm run build-prod` to generate build for production this will generate build in Backend/public directory.
+Now to serve build go to backend directory and run `nodemon` or `npm run start` this will serve your build at `http://localhost:3000`.
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+## Demo
 
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+The application is running live on [Todo App](https://app-task-todo.herokuapp.com/)

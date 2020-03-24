@@ -45,6 +45,7 @@ export class LoginComponent implements OnInit {
         }
       }, err => {
         console.log(err);
+        this.inProcess = false;
         this.error = true;
       })
     }
